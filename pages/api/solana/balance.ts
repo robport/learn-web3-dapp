@@ -4,14 +4,15 @@ import {getNodeURL} from '@figment-solana/lib';
 
 export default async function balance(
   req: NextApiRequest,
-  res: NextApiResponse<string | number>,
+  res: NextApiResponse<string | number>
 ) {
   try {
     const {network, address} = req.body;
+    console.log('address', address);
     const url = getNodeURL(network);
     const connection = new Connection(url, 'confirmed');
-    const publicKey = undefined;
-    const balance = undefined;
+    const publicKey = new PublicKey(address);
+    const balance = await connection.getBalance(publicKey);
     if (balance === 0 || balance === undefined) {
       throw new Error('Account not funded');
     }

@@ -9,20 +9,20 @@ const PROGRAM_SO_PATH = path.join(PROGRAM_PATH, 'helloworld.so');
 
 export default async function deploy(
   req: NextApiRequest,
-  res: NextApiResponse<string | boolean>,
+  res: NextApiResponse<string | boolean>
 ) {
   try {
     const {network, programId} = req.body;
     const url = getNodeURL(network);
     const connection = new Connection(url, 'confirmed');
     // Re-create publicKeys from params
-    const publicKey = undefined;
-    const programInfo = undefined;
+    const publicKey = new PublicKey(programId);
+    const programInfo = await connection.getAccountInfo(publicKey);
 
     if (programInfo === null) {
       if (fs.existsSync(PROGRAM_SO_PATH)) {
         throw new Error(
-          'Program needs to be deployed with `solana program deploy`',
+          'Program needs to be deployed with `solana program deploy`'
         );
       } else {
         throw new Error('Program needs to be built and deployed');
