@@ -20,7 +20,9 @@ import {
   CERAMIC_PROTOCOLS,
   CERAMIC_NETWORKS,
   THE_GRAPH_PROTOCOLS,
+  THE_GRAPH_NEAR_PROTOCOLS,
   THE_GRAPH_NETWORKS,
+  THE_GRAPH_NEAR_NETWORKS,
   ARWEAVE_PROTOCOLS,
   ARWEAVE_NETWORKS,
 } from 'types';
@@ -85,7 +87,7 @@ export const CHAINS_CONFIG: ChainsType = {
     active: true,
     logoUrl: 'https://cryptologos.cc/logos/celo-celo-logo.svg?v=010',
     protocol: CELO_PROTOCOLS.RPC,
-    network: CELO_NETWORKS.ALFAJORES,
+    network: CELO_NETWORKS.TESTNET,
     steps: [
       {
         id: PROTOCOL_STEPS_ID.PREFACE,
@@ -100,42 +102,34 @@ export const CHAINS_CONFIG: ChainsType = {
       {
         id: PROTOCOL_STEPS_ID.CHAIN_CONNECTION,
         title: 'Connect to Celo',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.CREATE_ACCOUNT,
         title: 'Create an account',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.GET_BALANCE,
         title: 'Get the balance',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.TRANSFER_TOKEN,
         title: 'Transfer some tokens',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.SWAP_TOKEN,
         title: 'Swap cUSD to CELO',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.DEPLOY_CONTRACT,
         title: 'Deploy a smart contract',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.GET_CONTRACT_VALUE,
         title: 'Get the storage of a smart contract',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.SET_CONTRACT_VALUE,
         title: 'Set the storage of a smart contract',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.FINAL,
@@ -207,7 +201,7 @@ export const CHAINS_CONFIG: ChainsType = {
     active: true,
     logoUrl: 'https://cryptologos.cc/logos/polkadot-new-dot-logo.svg?v=010',
     protocol: POLYGON_PROTOCOLS.WS,
-    network: POLKADOT_NETWORKS.WESTEND,
+    network: POLKADOT_NETWORKS.TESTNET,
     steps: [
       {
         id: PROTOCOL_STEPS_ID.PREFACE,
@@ -222,37 +216,30 @@ export const CHAINS_CONFIG: ChainsType = {
       {
         id: PROTOCOL_STEPS_ID.CHAIN_CONNECTION,
         title: 'Connect to Polkadot',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.CREATE_ACCOUNT,
         title: 'Create an account',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.RESTORE_ACCOUNT,
         title: 'Restore an account',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.ESTIMATE_FEES,
         title: 'Estimate transaction fees',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.GET_BALANCE,
         title: 'Get the balance',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.ESTIMATE_DEPOSIT,
         title: 'Existential deposit',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.TRANSFER_TOKEN,
         title: 'Transfer some tokens',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.FINAL,
@@ -298,7 +285,6 @@ export const CHAINS_CONFIG: ChainsType = {
       {
         id: PROTOCOL_STEPS_ID.DEPLOY_CONTRACT,
         title: 'Deploy a Solidity smart contract',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.SET_CONTRACT_VALUE,
@@ -454,37 +440,30 @@ export const CHAINS_CONFIG: ChainsType = {
       {
         id: PROTOCOL_STEPS_ID.CHAIN_CONNECTION,
         title: 'Connect to Tezos',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.CREATE_ACCOUNT,
         title: 'Create an account',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.GET_BALANCE,
         title: 'Get the balance',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.TRANSFER_TOKEN,
         title: 'Transfer some TEZ',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.DEPLOY_CONTRACT,
         title: 'Deploy a smart contract',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.GET_CONTRACT_VALUE,
         title: 'Get the storage of a smart contract',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.SET_CONTRACT_VALUE,
         title: 'Set the storage of a smart contract',
-        skippable: true,
       },
       {
         id: PROTOCOL_STEPS_ID.FINAL,
@@ -555,6 +534,55 @@ export const CHAINS_CONFIG: ChainsType = {
       {
         id: PROTOCOL_STEPS_ID.GRAPH_NODE,
         title: 'Run a local Graph node',
+      },
+      {
+        id: PROTOCOL_STEPS_ID.SUBGRAPH_SCAFFOLD,
+        title: 'Create a subgraph scaffold',
+      },
+      {
+        id: PROTOCOL_STEPS_ID.SUBGRAPH_MANIFEST,
+        title: 'Tweak the Manifest',
+      },
+      {
+        id: PROTOCOL_STEPS_ID.SUBGRAPH_SCHEMA,
+        title: 'Define the schema',
+      },
+      {
+        id: PROTOCOL_STEPS_ID.SUBGRAPH_MAPPINGS,
+        title: 'Implement the mappings',
+      },
+      {
+        id: PROTOCOL_STEPS_ID.SUBGRAPH_QUERY,
+        title: 'Query the subgraph',
+      },
+      {
+        id: PROTOCOL_STEPS_ID.FINAL,
+        title: '🎓 Pathway complete!',
+        isOneColumn: true,
+      },
+    ],
+  },
+  [CHAINS.THE_GRAPH_NEAR]: {
+    id: CHAINS.THE_GRAPH_NEAR,
+    label: 'NEAR Graph',
+    active: true,
+    logoUrl: 'https://cryptologos.cc/logos/near-protocol-near-logo.svg?v=010',
+    protocol: THE_GRAPH_NEAR_PROTOCOLS.GRAPHQL,
+    network: THE_GRAPH_NEAR_NETWORKS.HOSTED,
+    steps: [
+      {
+        id: PROTOCOL_STEPS_ID.PREFACE,
+        title: 'Welcome to the The Graph for NEAR Pathway',
+        isOneColumn: true,
+      },
+      {
+        id: PROTOCOL_STEPS_ID.PROJECT_SETUP,
+        title: 'Introduction',
+        isOneColumn: true,
+      },
+      {
+        id: PROTOCOL_STEPS_ID.GRAPH_NODE,
+        title: 'The Graph hosted service',
       },
       {
         id: PROTOCOL_STEPS_ID.SUBGRAPH_SCAFFOLD,

@@ -1,3 +1,6 @@
+import type {Dispatch, SetStateAction} from 'react';
+import {BlockWithTransactions} from '@ethersproject/abstract-provider';
+
 export enum CHAINS {
   ARWEAVE = 'arweave',
   AVALANCHE = 'avalanche',
@@ -10,6 +13,7 @@ export enum CHAINS {
   SOLANA = 'solana',
   TEZOS = 'tezos',
   THE_GRAPH = 'the_graph',
+  THE_GRAPH_NEAR = 'the_graph_near',
 }
 
 // Protocol's Enum
@@ -24,7 +28,12 @@ export type PROTOCOLS =
   | TEZOS_PROTOCOLS
   | CERAMIC_PROTOCOLS
   | THE_GRAPH_PROTOCOLS
+  | THE_GRAPH_NEAR_PROTOCOLS
   | ARWEAVE_PROTOCOLS;
+
+export enum THE_GRAPH_NEAR_PROTOCOLS {
+  GRAPHQL = 'GRAPHQL',
+}
 
 export enum THE_GRAPH_PROTOCOLS {
   GRAPHQL = 'GRAPHQL',
@@ -87,8 +96,8 @@ export enum AVALANCHE_NETWORKS {
 }
 
 export enum CELO_NETWORKS {
-  MAINNET = 'MAINNET',
-  ALFAJORES = 'alfajores',
+  TESTNET = 'Alfajores',
+  DATAHUB = 'Datahub',
 }
 
 export enum SECRET_NETWORKS {
@@ -98,27 +107,23 @@ export enum SECRET_NETWORKS {
 }
 
 export enum NEAR_NETWORKS {
-  MAINNET = 'MAINNET',
-  TESTNET = 'TESTNET',
-  DATAHUB = 'datahub',
+  TESTNET = 'Testnet',
+  DATAHUB = 'Datahub',
 }
 
 export enum TEZOS_NETWORKS {
-  MAINNET = 'MAINNET',
-  TESTNET = 'TESTNET',
-  DATAHUB = 'datahub',
+  TESTNET = 'Hangzhounet',
+  DATAHUB = 'Datahub',
 }
 
 export enum POLKADOT_NETWORKS {
-  WESTEND = 'WESTEND',
-  MAINNET = 'MAINNET',
-  DATAHUB = 'datahub',
+  TESTNET = 'Westend',
+  DATAHUB = 'Datahub',
 }
 
 export enum POLYGON_NETWORKS {
-  MAINNET = 'MAINNET',
-  TESTNET = 'TESTNET',
-  DATAHUB = 'datahub',
+  TESTNET = 'Mumbai',
+  DATAHUB = 'Datahub',
 }
 
 export enum SOLANA_NETWORKS {
@@ -141,6 +146,10 @@ export enum THE_GRAPH_NETWORKS {
   STUDIO = 'studio',
 }
 
+export enum THE_GRAPH_NEAR_NETWORKS {
+  HOSTED = 'hosted',
+}
+
 export enum ARWEAVE_NETWORKS {
   MAINNET = 'mainnet',
   TESTNET = 'TESTNET',
@@ -158,6 +167,7 @@ export type NETWORKS =
   | CELO_NETWORKS
   | TEZOS_NETWORKS
   | THE_GRAPH_NETWORKS
+  | THE_GRAPH_NEAR_NETWORKS
   | CERAMIC_NETWORKS
   | TEZOS_NETWORKS
   | ARWEAVE_NETWORKS;
@@ -257,6 +267,11 @@ export type LocalStorageStateT = {
 
 export type LocalStorageProtocolStateT = {
   currentStepId: PROTOCOL_STEPS_ID;
+  steps: {
+    [Key in PROTOCOL_STEPS_ID]: {
+      isCompleted: boolean;
+    };
+  };
   innerState?: InnerStateT;
 };
 
@@ -303,9 +318,28 @@ export enum PROTOCOL_STEPS_ID {
   BASIC_PROFILE = 'BASIC_PROFILE',
   CUSTOM_DEFINITION = 'CUSTOM_DEFINITION',
   GRAPH_NODE = 'GRAPH_NODE',
+  HOSTED_SERVICE = 'HOSTED_SERVICE',
   SUBGRAPH_SCAFFOLD = 'SUBGRAPH_SCAFFOLD',
   SUBGRAPH_MANIFEST = 'SUBGRAPH_MANIFEST',
   SUBGRAPH_QUERY = 'SUBGRAPH_QUERY',
   SUBGRAPH_SCHEMA = 'SUBGRAPH_SCHEMA',
   SUBGRAPH_MAPPINGS = 'SUBGRAPH_MAPPINGS',
 }
+
+// Near type
+export type CheckAccountIdT = {
+  network: string;
+  freeAccountId: string;
+  setFreeAccountId: Dispatch<SetStateAction<string>>;
+  setIsFreeAccountId: Dispatch<SetStateAction<boolean>>;
+};
+
+export type AlertT = 'success' | 'info' | 'warning' | 'error' | undefined;
+
+export type QueryT = {
+  networkName: string;
+  chainId: number;
+  blockHeight: number;
+  gasPriceAsGwei: string;
+  blockInfo: BlockWithTransactions;
+};
